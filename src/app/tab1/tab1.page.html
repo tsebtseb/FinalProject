@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Medical costs
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Medical costs</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-card-title>
+      <H1>Your Medical cost</H1>
+    </ion-card-title>
+    <ion-item>
+      <ion-label>Your age: </ion-label>
+      <ion-input [(ngModel)]="inage"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Your bmi: </ion-label>
+      <ion-input [(ngModel)]="inbmi"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Your charges: </ion-label>
+      <ion-input [(ngModel)]="incharges"></ion-input>
+    </ion-item>
+    <ion-button expand="block" (click)=getinsert()>Insert Your Data</ion-button>
+    <div *ngIf='indata$ | async as inans'>
+       <ion-card-content>
+         {{inans.indata}}
+       </ion-card-content>
+    </div>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-title>
+      <H1>Medical costs Records</H1>
+    </ion-card-title>
+    <ion-item>
+      <ion-label>Age: </ion-label>
+      <ion-input [(ngModel)]="age"></ion-input>
+    </ion-item>
+    <ion-button expand="block" (click)=getdata()>Submit</ion-button>
+    <div *ngIf='data$ | async as ans'>
+      <ion-card *ngFor="let item of ans.data">
+      <ion-card-content>
+       <b>age: </b>{{item.age}}<br>
+       <b>bmi: </b>{{item.bmi}}<br>
+       <b>medical costs: </b>{{item.charges}}
+      </ion-card-content>
+      </ion-card>
+    </div>
+  </ion-card>
+
+</ion-content>

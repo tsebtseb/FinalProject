@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Data Overview
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Data Overview</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-card-content *ngFor='let item of itemlist'>
+        <b>count: </b>{{item.count}}<br>
+        <b>age mean: </b>{{item.agemean}}<br>
+        <b>age min: </b>{{item.agemin}}<br>
+        <b>age max: </b>{{item.agemax}}<br>
+        <b>bmi mean: </b>{{item.bmimean}}<br>
+        <b>bmi min: </b>{{item.bmimin}}<br>
+        <b>bmi max: </b>{{item.bmimax}}<br>
+        <b>charges mean: </b>{{item.chargesmean}}<br>
+        <b>charges min: </b>{{item.chargesmin}}<br>
+        <b>charges max: </b>{{item.chargesmax}}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-title>
+      <H1>Find data base on charges range</H1>
+    </ion-card-title>
+    <ion-item>
+      <ion-label>Minimum charges: </ion-label>
+      <ion-input [(ngModel)]="mini"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Maximum charges: </ion-label>
+      <ion-input [(ngModel)]="maxi"></ion-input>
+    </ion-item>
+    <ion-button expand="block" (click)=getrange()>Submit</ion-button>
+    <div *ngIf='range$ | async as r'>
+      <ion-card *ngFor="let item of r.data">
+        <ion-card-content>
+          <b>age: </b>{{item.age}}<br>
+          <b>bmi: </b>{{item.bmi}}<br>
+          <b>medical costs: </b>{{item.charges}}
+         </ion-card-content>
+      </ion-card>
+    </div>
+  </ion-card>
+
+</ion-content>
